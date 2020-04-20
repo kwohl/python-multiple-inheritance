@@ -13,82 +13,95 @@ class MothersDay(Arrangement):
         super().__init__()
 
     def enhance(self, flower):
-        if isinstance(flower, Daisy) or isinstance(flower, Baby_Breath) or isinstance(flower, Poppy):
+        if isinstance(flower, IOrganic):
             self.flowers.append(flower)
         else:
             print(f"This {flower.name} does not belong in the Mother's Day Arrangement.")
 
-    def trim(self, length = "4 inches"):
+    def trim(self, length = 4):
         for flower in self.flowers:
-            flower.stem = length
-            print(f"The stem on this {flower.name} is now {flower.stem}.")
+            flower.stem_length = length
+            print(f"The stem on the {flower.name} is now {flower.stem_length} inches.")
 
 class ValentinesDay(Arrangement):
     def __init__(self):
         super().__init__()
      
     def enhance(self, flower):
-        if isinstance(flower, IOrganic):
+        if isinstance(flower, INotOrganic):
             self.flowers.append(flower)
         else:
             print(f"This {flower.name} does not belong in the Valentine's Day Arrangement.")
     # Override the `enhance` method to ensure only
     # roses, lillies, and alstroemeria can be added
 
-    def trim(self, length = "7 inches"):
+    def trim(self, length = 7):
         for flower in self.flowers:
-            flower.stem = length
-            print(f"The stem on this {flower.name} is now {flower.stem}.")
+            flower.stem_length = length
+            print(f"The stem on the {flower.name} is now {flower.stem_length} inches.")
 
 class IOrganic:
 
     def __init__(self):
+        self.isOrganic = True
+
+class INotOrganic:
+
+    def __init__(self):
         self.isOrganic = False
 
-class Rose(IOrganic):
+class Flower:
+
     def __init__(self):
-        super().__init__()
+        self.stem_length = 10
+
+class Rose(Flower, INotOrganic):
+    def __init__(self):
+        Flower.__init__(self)
+        INotOrganic.__init__(self)
         self.name = "rose"
 
-class Lily(IOrganic):
+class Lily(Flower, INotOrganic):
     def __init__(self):
-        super().__init__()
+        Flower.__init__(self)
+        INotOrganic.__init__(self)
         self.name = "lily"
 
-class Alstroemeria(IOrganic):
+class Alstroemeria(Flower, INotOrganic):
     def __init__(self):
-        super().__init__()
+        Flower.__init__(self)
+        INotOrganic.__init__(self)
         self.name = "alstroemeria"
 
-class Daisy():
+class Daisy(Flower, IOrganic):
     def __init__(self):
-        self.is_organic = True
+        Flower.__init__(self)
+        IOrganic.__init__(self)
         self.name = "daisy"
 
-class Baby_Breath():
+class Baby_Breath(Flower, IOrganic):
     def __init__(self):
-        self.is_organic = True
+        Flower.__init__(self)
+        IOrganic.__init__(self)
         self.name = "baby's breath"
 
-class Poppy():
+class Poppy(Flower, IOrganic):
     def __init__(self):
-        self.is_organic = True
+        Flower.__init__(self)
+        IOrganic.__init__(self)
         self.name = "poppy"
 
-if __name__ == "__main__":
-    for_beth = ValentinesDay()
-    red_rose = Rose()
+red_rose = Rose()
+pink_rose = Rose()
+white_lily = Lily()
+white_daisy = Daisy()
+for_beth = ValentinesDay()
+for_beth.enhance(red_rose)
+for_beth.enhance(pink_rose)
+for_beth.enhance(white_lily)
 
-    for_beth.enhance(red_rose)
+for_beth.enhance(white_daisy)
 
-    for_mom = MothersDay()
-    pink_rose = Rose()
-    for_mom.enhance(pink_rose)
+for_beth.trim()
 
-    print()
 
-    for_beth.enhance(pink_rose)
-
-    for_beth.trim()
-
-    
