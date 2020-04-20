@@ -28,7 +28,7 @@ class ValentinesDay(Arrangement):
         super().__init__()
      
     def enhance(self, flower):
-        if isinstance(flower, Rose) or isinstance(flower, Lily) or isinstance(flower, Alstroemeria):
+        if isinstance(flower, IOrganic):
             self.flowers.append(flower)
         else:
             print(f"This {flower.name} does not belong in the Valentine's Day Arrangement.")
@@ -40,39 +40,37 @@ class ValentinesDay(Arrangement):
             flower.stem = length
             print(f"The stem on this {flower.name} is now {flower.stem}.")
 
-class Flower:
+class IOrganic:
 
     def __init__(self):
-        self.stem = ""
-        self.color = ""
-        self.name = ""
+        self.isOrganic = False
 
-class Rose(Flower):
+class Rose(IOrganic):
     def __init__(self):
-        self.is_organic = False
+        super().__init__()
         self.name = "rose"
 
-class Lily(Flower):
+class Lily(IOrganic):
     def __init__(self):
-        self.is_organic = False
+        super().__init__()
         self.name = "lily"
 
-class Alstroemeria(Flower):
+class Alstroemeria(IOrganic):
     def __init__(self):
-        self.is_organic = False
+        super().__init__()
         self.name = "alstroemeria"
 
-class Daisy(Flower):
+class Daisy():
     def __init__(self):
         self.is_organic = True
         self.name = "daisy"
 
-class Baby_Breath(Flower):
+class Baby_Breath():
     def __init__(self):
         self.is_organic = True
         self.name = "baby's breath"
 
-class Poppy(Flower):
+class Poppy():
     def __init__(self):
         self.is_organic = True
         self.name = "poppy"
@@ -83,8 +81,14 @@ if __name__ == "__main__":
 
     for_beth.enhance(red_rose)
 
-    for_beth.trim()
-
     for_mom = MothersDay()
     pink_rose = Rose()
     for_mom.enhance(pink_rose)
+
+    print()
+
+    for_beth.enhance(pink_rose)
+
+    for_beth.trim()
+
+    
