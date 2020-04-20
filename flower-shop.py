@@ -16,7 +16,12 @@ class MothersDay(Arrangement):
         if isinstance(flower, Daisy) or isinstance(flower, Baby_Breath) or isinstance(flower, Poppy):
             self.flowers.append(flower)
         else:
-            print("This flower does not belong in the Mother's Day Arrangement.")
+            print(f"This {flower.name} does not belong in the Mother's Day Arrangement.")
+
+    def trim(self, length = "4 inches"):
+        for flower in self.flowers:
+            flower.stem = length
+            print(f"The stem on this {flower.name} is now {flower.stem}.")
 
 class ValentinesDay(Arrangement):
     def __init__(self):
@@ -26,7 +31,7 @@ class ValentinesDay(Arrangement):
         if isinstance(flower, Rose) or isinstance(flower, Lily) or isinstance(flower, Alstroemeria):
             self.flowers.append(flower)
         else:
-            print("This flower does not belong in the Valentine's Day Arrangement.")
+            print(f"This {flower.name} does not belong in the Valentine's Day Arrangement.")
     # Override the `enhance` method to ensure only
     # roses, lillies, and alstroemeria can be added
 
@@ -79,3 +84,7 @@ if __name__ == "__main__":
     for_beth.enhance(red_rose)
 
     for_beth.trim()
+
+    for_mom = MothersDay()
+    pink_rose = Rose()
+    for_mom.enhance(pink_rose)
